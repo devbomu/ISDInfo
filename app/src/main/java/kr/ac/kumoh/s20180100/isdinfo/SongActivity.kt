@@ -1,10 +1,13 @@
 package kr.ac.kumoh.s20180100.isdinfo
 
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import kr.ac.kumoh.s20180100.isdinfo.databinding.ActivitySongBinding
+
 
 class SongActivity : AppCompatActivity(){
     companion object {
@@ -37,8 +40,13 @@ class SongActivity : AppCompatActivity(){
             binding.textPlease.text = "영상이 없어요!"
         }
 
+        lifecycle.addObserver(binding.ytSong)
         // 유튜브 영상 플레이어 활성화
-        binding.ytSong.play(link)
+        binding.ytSong.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                youTubePlayer.loadVideo(link, 0F)
+            }
+        })
 
         // 상단 액션 바 색 및 텍스트 설정
         supportActionBar?.setBackgroundDrawable(ColorDrawable(0xFFDDA0DD.toInt()))

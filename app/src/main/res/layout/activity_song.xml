@@ -15,14 +15,13 @@
         android:layout_gravity="center_vertical"
         android:orientation="vertical">
 
-        <!-- 유튜브 영상 플레이어 -->
-        <kr.co.prnd.YouTubePlayerView
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
             android:id="@+id/yt_song"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:background="@android:drawable/alert_light_frame"
-            tools:ignore="MissingClass" />
+            />
 
         <TextView
             android:id="@+id/text_please"
